@@ -59,7 +59,7 @@ public class motor_test extends OpMode{
 
     /* Declare OpMode members. */
     HardwarePushbot robot       = new HardwarePushbot();// use the class created to define a Pushbot's hardware
-                                                         // could also use HardwarePushbotMatrix class.
+    // could also use HardwarePushbotMatrix class.
     double          clawOffset  = 0.0 ;                  // Servo mid position
     final double    CLAW_SPEED  = 0.02 ;                 // sets rate to move servo
     /*
@@ -106,6 +106,7 @@ public class motor_test extends OpMode{
     {
         robot.leftDrive.setPower(leftPower);
         robot.rightDrive.setPower(rightPower);
+
         /*
         //This int check is declared and is used the check whether the box is manually turned or not. If it is manually turned, it = 1.
         //Otherwise, it = 0.
@@ -120,15 +121,14 @@ public class motor_test extends OpMode{
 
         //I dunno if this works. sBox.getPowerFloat(); is something you can do, but i dunno how to work that.
 
-        if (boxPower > 10)
+        if (box.getPower() > 10)
         {
             sBox.setDirection(Servo.Direction.FORWARD);
             check = 1;
         }
-        else if (boxPower < -10)
+        else if (box.getPower() < -10)
         {
             sBox.setDirection(Servo.Direction.REVERSE);
-            check = 1;
         }
 
         if (armPower > 10)
@@ -154,8 +154,8 @@ public class motor_test extends OpMode{
     }
     @Override
     public void loop() {
-        double left;
-        double right;
+        double leftMotor;
+        double rightMotor;
         double pinion;
         double intake;
         double box;
@@ -163,8 +163,8 @@ public class motor_test extends OpMode{
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
 
-        left = -gamepad1.left_stick_y;
-        right = -gamepad1.right_stick_y;
+        leftMotor = -gamepad1.left_stick_y;
+        rightMotor = -gamepad1.right_stick_y;
         pinion = -gamepad2.left_stick_y;
         intake = -gamepad2.left_stick_x;
         box = -gamepad2.right_stick_x * 10;
@@ -172,7 +172,7 @@ public class motor_test extends OpMode{
 
         //uncomment pinion and intake when used for the actual robot
 
-        power(left, right/*, pinion, intake, box, arm*/);
+        power(leftMotor, rightMotor/*, pinion, intake, box, arm*/);
 
         // Instead of using the two lines of code below, you can just use my method.
         //robot.leftDrive.setPower(left);
@@ -200,8 +200,8 @@ public class motor_test extends OpMode{
 
         // Send telemetry message to signify robot running;
         telemetry.addData("claw",  "Offset = %.2f", clawOffset);
-        telemetry.addData("left",  "%.2f", left);
-        telemetry.addData("right", "%.2f", right);
+        // telemetry.addData("left",  "%.2f", left);
+        // telemetry.addData("right", "%.2f", right);
     }
 
 
@@ -213,4 +213,3 @@ public class motor_test extends OpMode{
     }
 
 }
-	
