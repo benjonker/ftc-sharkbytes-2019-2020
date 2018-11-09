@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="AutoSample_Linear", group="Chris")
-public class AutoSample_Linear extends LinearOpMode {
+public class LiviAutoSimple extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor aDrive = null;
@@ -18,7 +18,12 @@ public class AutoSample_Linear extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     public void runOpMode() {
-        waitForStart();
+        aDrive =  hardwareMap.get(DcMotor.class, "left_drive");
+        bDrive = hardwareMap.get(DcMotor.class, "right_drive");
+
+        //TEST
+        aDrive.setDirection(DcMotor.Direction.FORWARD);
+        cDrive.setDirection(DcMotor.Direction.FORWARD);
 
 
     }
