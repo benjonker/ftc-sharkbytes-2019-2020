@@ -18,8 +18,8 @@ public class LiviAutoSimple extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     public void runOpMode() {
-        aDrive =  hardwareMap.get(DcMotor.class, "left_drive");
-        bDrive = hardwareMap.get(DcMotor.class, "right_drive");
+        aDrive =  hardwareMap.get(DcMotor.class, "mDrv_l0");
+        bDrive = hardwareMap.get(DcMotor.class, "mDrv_r0");
 
         //TEST
         aDrive.setDirection(DcMotor.Direction.FORWARD);
