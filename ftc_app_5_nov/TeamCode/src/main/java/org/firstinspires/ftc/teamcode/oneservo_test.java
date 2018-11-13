@@ -50,14 +50,15 @@ public class oneservo_test extends LinearOpMode{
 
         while (opModeIsActive())
         {
-            float direction = (-gamepad1.right_stick_y) * 10f; // 10f to say that its a float cuz java syntax is weird
-            if (direction > 10)
+            float direction = (-gamepad1.right_stick_y);
+
+            if (direction > 0.1)
             {
-                sPin.setDirection(Servo.Direction.FORWARD);
+                sPin.setPosition(direction);
             }
-            if (direction < -10)
+            if (direction < -0.1)
             {
-                sPin.setDirection(Servo.Direction.REVERSE);
+                sPin.setPosition(direction);
             }
         }
     }
