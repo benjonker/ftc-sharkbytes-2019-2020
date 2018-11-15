@@ -10,25 +10,46 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 @TeleOp(name="AutonomousLanding")
 //@Disabled
 public class AutonomousLanding extends LinearOpMode {
-    private Servo sPin = null; // servo on port zero
+
+    private DcMotor mPin = null; // motor used for pinion
 
     @Override
-    public void runOpMode() {
-
-        sPin = hardwareMap.get(Servo.class, "sPin"); // get the port thingy
+    public void runOpMode()
+    {
+        mPin = hardwareMap.get(DcMotor.class, "mPin"); // gets the port
 
         waitForStart();
 
-        while (opModeIsActive()) {
-            float direction = (-gamepad1.right_stick_y);
-
-            if (direction > 0.1) {
-                sPin.setPosition(direction);
-            }
-            if (direction < -0.1) {
-                sPin.setPosition(direction);
-            }
+        while (opModeIsActive())
+        {
         }
+    }
+    //This whole script is jut for the method below.
+    //This method extends the robot to the floor, moves it slightly to the right or left,
+    // and the de-extends the rack and pinion back into the robot.
+    public void robotLanding()
+    {
+        mPin = hardwareMap.get(DcMotor.class, "mPin"); // gets the port
+        //The amount of time will is tbd, for now I have set it to two seconds
+        int amountOfTimeToExtendPinion = 4;
+        int frameCount = 0;
+        int seconds = 0;
+        while (seconds > amountOfTimeToExtendPinion)
+        {
+            mPin.setPower(1);
+            frameCount++;
+            seconds = frameCount/60;
+        }
+        //Run a method that moves the robot to the left or right
+        frameCount = 0;
+        seconds = 0;
+        while (seconds > amountOfTimeToExtendPinion)
+        {
+            mPin.setPower(-1);
+            frameCount++;
+            seconds = frameCount/60;
+        }
+        //The while statement above isn't necessary, it just puts the pinion back inside the robot.
     }
 }
 
