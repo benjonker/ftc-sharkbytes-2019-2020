@@ -119,7 +119,7 @@ public class LiviAutoSimple extends LinearOpMode {
         }
     }
 
-    public void jewel(double holdTime) throws InterruptedException{
+    public void jewel(double holdTime) {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         //TODO: Figure out what colors we need to look for, and then assign what to do when we see them
@@ -154,11 +154,11 @@ public class LiviAutoSimple extends LinearOpMode {
         waitForStart();
 
         //Unhooking the robot.
-        
+        raiseRackPinionMotor(5);
+        backward(2);
+        lowerRachPinionMotor(5);
 
-
-        while (opModeIsActive()) {
-
+        jewel(5);
 
 
         }
