@@ -1,0 +1,55 @@
+Git Hub Set Up Guide
+All code you type is within the asterixs, and make sure to not copy the space before the command.
+Because it might give you errors.
+
+
+0. Delete any old repositories you have tried to make in the past
+
+1. Open your terminal
+
+2. Navigate to your desktop:
+
+    ** cd desktop **
+
+3. Check if you have set up any git hub repositories
+
+    ** git remote -v **
+
+        3.a. It should return
+
+            fatal: Not a git repository (or any of the parent directories): .git
+
+		!!! IMPORTANT: MAKE SURE LIVI IS NEXT TO YOU BEFORE YOU DO THIS STEP, IT CAN RUIN YOUR COMPUTER COMPLETELY. !!!
+                3.a.b. If it does return a bunch of stuff, run ** rm -rf .git **.
+                
+
+        3.b. Double check if there is no repository (repo)
+
+            ** git status **
+
+                3.b.a. It should return
+
+                    fatal: Not a git repository (or any of the parent directories): .git
+
+4. Make sure you have perm to the ftc_SharkBytes2018-2019 repo on Github
+
+5. Make a local repo (clone) from terminal (make sure you are still in your desktop)
+
+    ** git clone https://github.com/P0vellesto/ftc_SharkBytes2018-2019.git **
+
+6. Navigate to your local repository
+
+    ** cd ftc_SharkBytes2018-2019 **
+
+    6.a. Make sure that it is working and is linked to your git hub account
+
+          ** git remote -v **
+
+              3.a. It should return
+
+                  origin (link/user/ftc_SharkBytes2018-2019.git)
+
+                      3.a.b. If it doesn't check in with LIVI
+
+7. You should be all set up! If you don't want to use the command line again, there is an alternative called Github desktop
+Please contact Livi if you want help setting that up.

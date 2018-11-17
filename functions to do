@@ -1,0 +1,14 @@
+#robot drive control wrapper functions
+
+!!all of the below functions take in (power, duration: secs)
+
+turnLeft()
+turnRight()
+
+forward()
+backward()
+
+cutDrive() //stop all drive motor movement
+
+runIntake() //intake wheels
+cutIntake() //stop intake wheels

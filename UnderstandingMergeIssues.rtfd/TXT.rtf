@@ -1,0 +1,35 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f0\fs32 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The following image shows a very basic example of how changes conflict in Git. Both the master and bugfix branch make updates to the same lines of source code.\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \cb1 \pard\pardeftab720\sl360\partightenfactor0
+\cf2 \cb3 \
+If you try to merge the bugfix branch into master, Git can't determine which changes to use in the merged version. You may want to keep the changes in the master branch, the bugfix branch, or some combination of the two. Resolve this conflict with a merge commit on the master branch that reconciles the conflicting changes between the two branches.\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 \cb1 \pard\pardeftab720\sl360\partightenfactor0
+\cf2 \cb3 \
+The most common merge conflict situation is when you pull updates from a remote branch to your local branch, for example from\'a0
+\f1\fs19\fsmilli9600 origin/bugfix
+\f0\fs32 \'a0into your local\'a0
+\f1\fs19\fsmilli9600 bugfix
+\f0\fs32 \'a0branch. Resolve these conflicts in the same way - create a merge commit on your local branch reconciling the changes and complete the merge.\
+\pard\pardeftab720\sl360\sa360\partightenfactor0
+
+\b\fs28\fsmilli14250 \cf2 What does Git do to prevent merge conflicts?\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\b0\fs32 \cf2 Git keeps an entire history of all changes made in your repo. Git uses this history as well as the relationships between commits to see if it can order the changes and resolve the merge automatically. Conflicts only occur when it's not clear from your history how changes to the same lines in the same files should merge.\
+\pard\pardeftab720\sl360\sa360\partightenfactor0
+
+\b\fs28\fsmilli14250 \cf2 Preventing merge conflicts\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\b0\fs32 \cf2 Git is very good at automatically merging file changes in most circumstances, provided that the file contents don't change dramatically between commits. Consider\'a0{\field{\*\fldinst{HYPERLINK "https://docs.microsoft.com/en-us/azure/devops/repos/git/rebase?view=vsts"}}{\fldrslt \ul rebasing}}\'a0branches before you open up a\'a0{\field{\*\fldinst{HYPERLINK "https://docs.microsoft.com/en-us/azure/devops/repos/git/pullrequest?view=vsts"}}{\fldrslt \ul pull request}}\'a0if your branch is far behind your main branch. Rebased branches will merge into your main branch without conflicts.\
+}
