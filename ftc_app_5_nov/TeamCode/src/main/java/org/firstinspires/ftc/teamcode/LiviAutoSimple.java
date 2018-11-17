@@ -103,6 +103,22 @@ public class LiviAutoSimple extends LinearOpMode {
 
     }
 
+    public void raiseRackPinionMotor(double holdTime) {
+        ElapsedTime holdTimer = new ElapsedTime();
+        holdTimer.reset();
+        while (opModeIsActive() && holdTimer.time() < holdTime) {
+            mPin.setPower(1);
+        }
+    }
+
+    public void lowerRachPinionMotor(double holdTime) {
+        ElapsedTime holdTimer = new ElapsedTime();
+        holdTimer.reset();
+        while (opModeIsActive() && holdTimer.time() < holdTime) {
+           mPin.setPower(-1);
+        }
+    }
+
     public void jewel(double holdTime) throws InterruptedException{
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
@@ -125,7 +141,7 @@ public class LiviAutoSimple extends LinearOpMode {
         }
     }
 
-    public void runOpMode() throws InterruptedException{
+    public void runOpMode(){
         colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
         colorSensor.enableLed(true);
         mDrv_l0 = hardwareMap.get(DcMotor.class, "mDrv_l0");
@@ -138,20 +154,7 @@ public class LiviAutoSimple extends LinearOpMode {
         waitForStart();
 
         //Unhooking the robot.
-        mPin.setPower(1);
-        TimeUnit.SECONDS.sleep(5);
-        mPin.setPower(0);
-        mDrv_l0.setPower(-0.1);
-        mDrv_l1.setPower(-0.1);
-        mDrv_r0.setPower(-0.1);
-        mDrv_r1.setPower(-0.1);
-        TimeUnit.SECONDS.sleep(5);
-        mDrv_l0.setPower(0);
-        mDrv_l1.setPower(0);
-        mDrv_r0.setPower(0);
-        mDrv_r1.setPower(0);
-        mPin.setPower(-1);
-        TimeUnit.SECONDS.sleep(5);
+        
 
 
         while (opModeIsActive()) {
