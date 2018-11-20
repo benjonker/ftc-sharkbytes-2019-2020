@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 //TODO: We need to test this code, and get vuforia working.
 
 @Autonomous(name="AutoSample_Linear", group="Chris")
-public class LiviAutoSimple extends LinearOpMode {
+public class livi_auto extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor mDrv_l0 = null;
@@ -24,7 +24,7 @@ public class LiviAutoSimple extends LinearOpMode {
     private DcMotor mDrv_r1 = null;
     private DcMotor mPin = null;
     private Servo sArm = null;
-    //private Servo sBox = null;
+    private Servo sBox = null;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -41,58 +41,62 @@ public class LiviAutoSimple extends LinearOpMode {
         mDrv_l1.setPower(0);
         mDrv_r0.setPower(0);
         mDrv_r1.setPower(0);
-    }
-
-    public void turnLeft(double holdTime) {
-        ElapsedTime holdTimer = new ElapsedTime();
-        holdTimer.reset();
-        while (opModeIsActive() && holdTimer.time() < holdTime) {
-            mDrv_l0.setPower(0.1);
-            mDrv_r0.setPower(-0.1);
-            mDrv_l1.setPower(0.1);
-            mDrv_r1.setPower(-0.1);
-        }
-        stopMoving();
+        double sArmStop = sArm.getPosition();
+        sArm.setPosition(sArmStop);
+        double sBoxStop = sBox.getPosition();
+        sBox.setPosition(sBoxStop);
 
     }
 
-    public void turnRight(double holdTime) {
+    public void turnLeft(double holdTime, double power) {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
-        while (opModeIsActive() && holdTimer.time() < holdTime) {
-            mDrv_l0.setPower(-0.1);
-            mDrv_r0.setPower(0.1);
-            mDrv_l1.setPower(-0.1);
-            mDrv_r1.setPower(0.1);
+        while (opModeIsActive() && 0 < holdTime) {
+            mDrv_l0.setPower(power);
+            mDrv_r0.setPower(-power);
+            mDrv_l1.setPower(power);
+            mDrv_r1.setPower(-power);
         }
         stopMoving();
     }
 
-    public void forward (double holdTime) {
+    public void turnRight(double holdTime, double power) {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
-            mDrv_l0.setPower(0.8);
-            mDrv_r0.setPower(0.8);
-            mDrv_l1.setPower(0.8);
-            mDrv_r1.setPower(0.8);
+            mDrv_l0.setPower(-power);
+            mDrv_r0.setPower(power);
+            mDrv_l1.setPower(-power);
+            mDrv_r1.setPower(power);
         }
         stopMoving();
     }
 
-    public void backward(double holdTime) {
+    public void forward (double holdTime, double power) {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
-            mDrv_l0.setPower(-0.8);
-            mDrv_r0.setPower(-0.8);
-            mDrv_l1.setPower(-0.8);
-            mDrv_r1.setPower(-0.8);
+            mDrv_l0.setPower(power);
+            mDrv_r0.setPower(power);
+            mDrv_l1.setPower(power);
+            mDrv_r1.setPower(power);
         }
         stopMoving();
     }
 
-    public void turnServo(double holdTime){
+    public void backward(double holdTime, double power) {
+        ElapsedTime holdTimer = new ElapsedTime();
+        holdTimer.reset();
+        while (opModeIsActive() && holdTimer.time() < holdTime) {
+            mDrv_l0.setPower(-power);
+            mDrv_r0.setPower(-power);
+            mDrv_l1.setPower(-power);
+            mDrv_r1.setPower(-power);
+        }
+        stopMoving();
+    }
+
+    public void turnArmServo(double holdTime){
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
@@ -103,19 +107,19 @@ public class LiviAutoSimple extends LinearOpMode {
 
     }
 
-    public void raiseRackPinionMotor(double holdTime) {
+    public void raiseRackPinionMotor(double holdTime, double power) {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
-            mPin.setPower(1);
+            mPin.setPower(power);
         }
     }
 
-    public void lowerRachPinionMotor(double holdTime) {
+    public void lowerRackPinionMotor(double holdTime, double power) {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
-           mPin.setPower(-1);
+           mPin.setPower(-power);
         }
     }
 
@@ -125,13 +129,13 @@ public class LiviAutoSimple extends LinearOpMode {
         //TODO: Figure out what colors we need to look for, and then assign what to do when we see them
         while (opModeIsActive() && holdTimer.time() < holdTime) {
             if (colorSensor.blue() > colorSensor.red()) { //TODO: We need to get the rough RBG of each jewel and gold coin
-                turnRight(1);
-                forward(0.5);
+                turnRight(1, 1);
+                forward(0.5, 1);
                 telemetry.addData("BLUE", "%s visible");
                 //robot.armServo.setPosition(0.0);
             } else {
-                forward(0.5);
-                turnLeft(1);
+                forward(0.5, 1);
+                turnLeft(1, 1);
                 //Assuming that when you turn right for 1 sec,
                 //and you turn back left for 1 you will be in the original position
                 telemetry.addData("RED", "%s visible");
@@ -142,29 +146,26 @@ public class LiviAutoSimple extends LinearOpMode {
     }
 
     public void runOpMode(){
-        colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
-        colorSensor.enableLed(true);
+        /*colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
+        colorSensor.enableLed(true);*/
         mDrv_l0 = hardwareMap.get(DcMotor.class, "mDrv_l0");
         mDrv_r0 = hardwareMap.get(DcMotor.class, "mDrv_r0");
         mDrv_l1 = hardwareMap.get(DcMotor.class, "mDrv_l1");
         mDrv_r1 = hardwareMap.get(DcMotor.class, "mDrv_r1");
         mPin = hardwareMap.get(DcMotor.class, "mPin");
         sArm = hardwareMap.get(Servo.class, "sArm");
+        sBox = hardwareMap.get(Servo.class, "sBox");
 
+        mDrv_l0.setDirection(DcMotor.Direction.REVERSE);
         mDrv_l1.setDirection(DcMotor.Direction.REVERSE);
-        mDrv_r1.setDirection(DcMotor.Direction.REVERSE);
         waitForStart();
 
         //Unhooking the robot.
-        raiseRackPinionMotor(5);
-        backward(2);
-        lowerRachPinionMotor(5);
+        raiseRackPinionMotor(5, 1);
+        backward(1, 1);
+        lowerRackPinionMotor(5, 1);
 
-        jewel(5);
-
-
-        }
+        //jewel(5); not used right now
+        //Naming the variable holdTime is misleading. You should change this Livi.
     }
-
-
 }
