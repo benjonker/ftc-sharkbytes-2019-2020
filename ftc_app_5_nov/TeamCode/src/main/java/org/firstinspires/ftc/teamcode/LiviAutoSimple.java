@@ -1,21 +1,22 @@
-package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
-import java.util.concurrent.TimeUnit;
+        package org.firstinspires.ftc.teamcode;
+
+        import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+        import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+        import com.qualcomm.robotcore.hardware.DcMotor;
+        import com.qualcomm.robotcore.hardware.DcMotorSimple;
+        import com.qualcomm.robotcore.hardware.HardwareMap;
+        import com.qualcomm.robotcore.hardware.Servo;
+        import com.qualcomm.robotcore.hardware.ColorSensor;
+        import com.qualcomm.robotcore.util.ElapsedTime;
+        import com.qualcomm.robotcore.util.Range;
+        import java.util.concurrent.TimeUnit;
 
 //TODO: We need to test this code, and get vuforia working.
 
 @Autonomous(name="AutoSample_Linear", group="Chris")
-public class LiviAutoSimple extends LinearOpMode {
+public class livi_auto extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor mDrv_l0 = null;
@@ -115,7 +116,7 @@ public class LiviAutoSimple extends LinearOpMode {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
-           mPin.setPower(-1);
+            mPin.setPower(-1);
         }
     }
 
@@ -142,27 +143,26 @@ public class LiviAutoSimple extends LinearOpMode {
     }
 
     public void runOpMode(){
-        colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
-        colorSensor.enableLed(true);
+        /*colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
+        colorSensor.enableLed(true);*/
         mDrv_l0 = hardwareMap.get(DcMotor.class, "mDrv_l0");
         mDrv_r0 = hardwareMap.get(DcMotor.class, "mDrv_r0");
+        mDrv_l1 = hardwareMap.get(DcMotor.class, "mDrv_l1");
+        mDrv_r1 = hardwareMap.get(DcMotor.class, "mDrv_r1");
         mPin = hardwareMap.get(DcMotor.class, "mPin");
         sArm = hardwareMap.get(Servo.class, "sArm");
 
         mDrv_l1.setDirection(DcMotor.Direction.REVERSE);
-        mDrv_r1.setDirection(DcMotor.Direction.REVERSE);
+        mDrv_l0.setDirection(DcMotor.Direction.REVERSE);
         waitForStart();
 
         //Unhooking the robot.
         raiseRackPinionMotor(5);
-        backward(2);
+        backward(2);.
         lowerRachPinionMotor(5);
 
-        jewel(5);
+        //jewel(5);
 
 
-        }
     }
-
-
 }
