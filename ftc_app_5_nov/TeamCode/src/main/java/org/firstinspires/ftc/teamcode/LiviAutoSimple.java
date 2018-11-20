@@ -156,13 +156,13 @@ public class LiviAutoSimple extends LinearOpMode {
         sArm = hardwareMap.get(Servo.class, "sArm");
         sBox = hardwareMap.get(Servo.class, "sBox");
 
+        mDrv_l0.setDirection(DcMotor.Direction.REVERSE);
         mDrv_l1.setDirection(DcMotor.Direction.REVERSE);
-        mDrv_r1.setDirection(DcMotor.Direction.REVERSE);
         waitForStart();
 
         //Unhooking the robot.
         raiseRackPinionMotor(5, 1);
-        backward(2, 1);
+        backward(1, 1);
         lowerRackPinionMotor(5, 1);
 
         jewel(5);
