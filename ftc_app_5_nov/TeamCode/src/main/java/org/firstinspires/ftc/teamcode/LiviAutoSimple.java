@@ -63,7 +63,7 @@ public class LiviAutoSimple extends LinearOpMode {
             mDrv_l0.setPower(-0.1);
             mDrv_r0.setPower(0.1);
             mDrv_l1.setPower(-0.1);
-            mDrv_r1.setPower(0.1);
+            mDrv_r1.setPower(0.1)
         }
         stopMoving();
     }
