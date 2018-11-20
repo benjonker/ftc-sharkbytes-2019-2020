@@ -1,16 +1,17 @@
-package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
-import java.util.concurrent.TimeUnit;
+        package org.firstinspires.ftc.teamcode;
+
+        import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+        import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+        import com.qualcomm.robotcore.hardware.DcMotor;
+        import com.qualcomm.robotcore.hardware.DcMotorSimple;
+        import com.qualcomm.robotcore.hardware.HardwareMap;
+        import com.qualcomm.robotcore.hardware.Servo;
+        import com.qualcomm.robotcore.hardware.ColorSensor;
+        import com.qualcomm.robotcore.util.ElapsedTime;
+        import com.qualcomm.robotcore.util.Range;
+        import java.util.concurrent.TimeUnit;
 
 //TODO: We need to test this code, and get vuforia working.
 
@@ -64,10 +65,17 @@ public class livi_auto extends LinearOpMode {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
+<<<<<<< HEAD:ftc_app_5_nov/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/livi_auto.java
             mDrv_l0.setPower(-power);
             mDrv_r0.setPower(power);
             mDrv_l1.setPower(-power);
             mDrv_r1.setPower(power);
+=======
+            mDrv_l0.setPower(-0.1);
+            mDrv_r0.setPower(0.1);
+            mDrv_l1.setPower(-0.1);
+            mDrv_r1.setPower(0.1)
+>>>>>>> 433f9ff12cd47bbb788d350457baf1462a47749c:ftc_app_5_nov/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/LiviAutoSimple.java
         }
         stopMoving();
     }
@@ -119,7 +127,11 @@ public class livi_auto extends LinearOpMode {
         ElapsedTime holdTimer = new ElapsedTime();
         holdTimer.reset();
         while (opModeIsActive() && holdTimer.time() < holdTime) {
+<<<<<<< HEAD:ftc_app_5_nov/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/livi_auto.java
            mPin.setPower(-power);
+=======
+            mPin.setPower(-1);
+>>>>>>> 433f9ff12cd47bbb788d350457baf1462a47749c:ftc_app_5_nov/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/LiviAutoSimple.java
         }
     }
 
@@ -158,6 +170,7 @@ public class livi_auto extends LinearOpMode {
 
         mDrv_l0.setDirection(DcMotor.Direction.REVERSE);
         mDrv_l1.setDirection(DcMotor.Direction.REVERSE);
+<<<<<<< HEAD:ftc_app_5_nov/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/livi_auto.java
         waitForStart();
 
         //Unhooking the robot.
@@ -167,5 +180,18 @@ public class livi_auto extends LinearOpMode {
 
         //jewel(5); not used right now
         //Naming the variable holdTime is misleading. You should change this Livi.
+=======
+        mDrv_l0.setDirection(DcMotor.Direction.REVERSE);
+        waitForStart();
+
+        //Unhooking the robot.
+        raiseRackPinionMotor(5);
+        backward(2);.
+        lowerRachPinionMotor(5);
+
+        //jewel(5);
+
+
+>>>>>>> 433f9ff12cd47bbb788d350457baf1462a47749c:ftc_app_5_nov/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/LiviAutoSimple.java
     }
 }
