@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 //TODO: We need to test this code, and get vuforia working.
 
 @Autonomous(name="AutoSample_Linear", group="Chris")
-public class LiviAutoSimple extends LinearOpMode {
+public class livi_auto extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor mDrv_l0 = null;
@@ -146,8 +146,8 @@ public class LiviAutoSimple extends LinearOpMode {
     }
 
     public void runOpMode(){
-        colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
-        colorSensor.enableLed(true);
+        /*colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
+        colorSensor.enableLed(true);*/
         mDrv_l0 = hardwareMap.get(DcMotor.class, "mDrv_l0");
         mDrv_r0 = hardwareMap.get(DcMotor.class, "mDrv_r0");
         mDrv_l1 = hardwareMap.get(DcMotor.class, "mDrv_l1");
@@ -165,7 +165,7 @@ public class LiviAutoSimple extends LinearOpMode {
         backward(1, 1);
         lowerRackPinionMotor(5, 1);
 
-        jewel(5);
+        //jewel(5); not used right now
         //Naming the variable holdTime is misleading. You should change this Livi.
     }
 }
