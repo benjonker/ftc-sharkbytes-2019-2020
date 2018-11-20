@@ -146,6 +146,8 @@ public class LiviAutoSimple extends LinearOpMode {
         colorSensor.enableLed(true);
         mDrv_l0 = hardwareMap.get(DcMotor.class, "mDrv_l0");
         mDrv_r0 = hardwareMap.get(DcMotor.class, "mDrv_r0");
+        mDrv_l1 = hardwareMap.get(DcMotor.class, "mDrv_l1");
+        mDrv_r1 = hardwareMap.get(DcMotor.class, "mDrv_r1");
         mPin = hardwareMap.get(DcMotor.class, "mPin");
         sArm = hardwareMap.get(Servo.class, "sArm");
 
